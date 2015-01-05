@@ -12,6 +12,8 @@ namespace Stack_Overflow
 {
     public abstract class Plugin
     {
+
+
         protected Plugin()
         {
             CriarMenu();
@@ -21,6 +23,7 @@ namespace Stack_Overflow
 
             PrintChat("Carregando, Criado por ptr0x e Mr Articuno");
             PrintChat("Made by ptr0x and Mr Articuno");
+
         }
 
         public Menu Menu { get; internal set; }
@@ -74,6 +77,10 @@ namespace Stack_Overflow
             miscMenu.AddItem(new MenuItem("packets", "Use packets / Pacotes").SetValue(true));
             Misc(miscMenu);
             Menu.AddSubMenu(miscMenu);
+
+            var itemMenu = new Menu("Items and Summoners", "Items");
+            ItemManager.AddToMenu(itemMenu);
+            Menu.AddSubMenu(itemMenu);
 
 
             if (Player.GetSpellSlot("SummonerDot") != SpellSlot.Unknown)

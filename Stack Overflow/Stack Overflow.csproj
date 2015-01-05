@@ -61,9 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Champions\Lulu.cs" />
+    <Compile Include="Champions\Talon.cs" />
     <Compile Include="Utilitario.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Utilitarios\AutoIgnite.cs" />
+    <Compile Include="Utilitarios\ItemManager.cs" />
     <Compile Include="Utilitarios\PotionManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
