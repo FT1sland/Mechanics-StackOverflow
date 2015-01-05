@@ -91,12 +91,12 @@ namespace Stack_Overflow.Champions
                 rCasted = true;
             }
 
-            if (GetBool("harassW") && W.IsReady())
+            if (GetBool("comboW") && W.IsReady())
             {
                 W.CastIfHitchanceEquals(target, HitChance.Medium, Packets);
             }
 
-            if (GetBool("harassE") && E.IsReady())
+            if (GetBool("comboE") && E.IsReady())
             {
                 E.Cast(target, Packets);
                 if (rCasted && GetBool("comboR"))
