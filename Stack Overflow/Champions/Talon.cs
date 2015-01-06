@@ -20,6 +20,7 @@ namespace Stack_Overflow.Champions
         public Spell R;
 
         private bool rCasted = false;
+        private bool eCasted = false;
 
         public Talon()
         {
@@ -76,6 +77,10 @@ namespace Stack_Overflow.Champions
             {
                 rCasted = false;
             }
+            if (E.IsReady())
+            {
+                eCasted = false;
+            }
         }
 
         private void Combar()
@@ -85,24 +90,36 @@ namespace Stack_Overflow.Champions
             if (target == null)
                 return;
 
-            if (GetBool("comboR") && R.IsReady() && E.IsReady() && !rCasted)
+            if (GetBool("comboR") && R.IsReady() && (GetBool("comboE") && E.IsReady()) && !rCasted && E.InRange(target))
             {
                 R.Cast(Packets);
                 rCasted = true;
             }
 
-            if (GetBool("harassW") && W.IsReady())
+            if (GetBool("comboW") && W.IsReady())
             {
                 W.CastIfHitchanceEquals(target, HitChance.Medium, Packets);
             }
 
-            if (GetBool("harassE") && E.IsReady())
+            if (GetBool("comboE") && E.InRange(target))
             {
-                E.Cast(target, Packets);
-                if (rCasted && GetBool("comboR"))
+                if (rCasted && E.IsReady())
+                {
+                    E.Cast(target, Packets);
+                    eCasted = true;
+                }
+                else if (!rCasted && GetBool("comboR") && R.IsReady() && E.IsReady())
+                {
+                    R.Cast(Packets);
+                    rCasted = true;
+                    E.Cast(target, Packets);
+                }else if(rCasted && !E.IsReady() && eCasted)
                 {
                     R.Cast(Packets);
                     rCasted = false;
+                }else
+                {
+                    E.Cast(target, Packets);
                 }
             }
 
