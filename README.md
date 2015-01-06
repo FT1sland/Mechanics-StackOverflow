@@ -11,3 +11,4 @@ Champions Pushed:
 
 
 Lulu;
+Talon;

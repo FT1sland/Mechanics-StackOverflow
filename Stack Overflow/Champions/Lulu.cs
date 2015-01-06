@@ -275,7 +275,7 @@ namespace Stack_Overflow.Champions
                 }
             }
 
-            if (GetBool("comboW") && W.IsReady())
+            if (GetBool("harassW") && W.IsReady())
             {
                 if (W.InRange(target))
                 {
