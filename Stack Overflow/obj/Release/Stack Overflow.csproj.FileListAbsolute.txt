@@ -1,0 +1,16 @@
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack Overflow.csprojResolveAssemblyReference.cache
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.exe.config
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.exe
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.pdb
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\LeagueSharp.Common.dll
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\LeagueSharp.dll
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.dll
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.Toolkit.dll
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.Toolkit.Graphics.dll
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\clipper_library.dll
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\LeagueSharp.xml
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.Toolkit.xml
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.Toolkit.Graphics.xml
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack OverFlw.exe
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack OverFlw.pdb

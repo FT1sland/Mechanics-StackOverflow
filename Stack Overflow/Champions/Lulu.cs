@@ -147,20 +147,14 @@ namespace Stack_Overflow.Champions
                 }
             }
 
-            if (GetBool("comboW") && W.IsReady())
+            if (GetBool("comboW") && W.IsReady() && W.InRange(target))
             {
-                if (W.InRange(target))
-                {
-                    W.Cast(target, Packets);
-                }
-                else
-                {
-                    if (E.IsReady() || Q.IsReady())
-                    {
-                        W.Cast(ObjectManager.Player);
-                    }
-                }
+                 W.Cast(target, Packets);
+            }
 
+            if (GetBool("comboWy") && W.IsReady() && !W.InRange(target))
+            {
+                W.Cast(ObjectManager.Player);
             }
 
             if (GetBool("comboR") && R.IsReady() && ObjectManager.Player.Health <= ObjectManager.Player.MaxHealth * 0.35)
@@ -275,20 +269,14 @@ namespace Stack_Overflow.Champions
                 }
             }
 
-            if (GetBool("harassW") && W.IsReady())
+            if (GetBool("harassW") && W.IsReady() && W.InRange(target))
             {
-                if (W.InRange(target))
-                {
-                    W.Cast(target, Packets);
-                }
-                else
-                {
-                    if (E.IsReady() || Q.IsReady())
-                    {
-                        W.Cast(ObjectManager.Player);
-                    }
-                }
+                W.Cast(target, Packets);
+            }
 
+            if (GetBool("harassWy") && W.IsReady() && !W.InRange(target))
+            {
+                W.Cast(ObjectManager.Player);
             }
 
         }
@@ -326,6 +314,7 @@ namespace Stack_Overflow.Champions
         {
             config.AddItem(new MenuItem("comboQ", "Use Q").SetValue(true));
             config.AddItem(new MenuItem("comboW", "Use W").SetValue(true));
+            config.AddItem(new MenuItem("comboWy", "Use W Yourself").SetValue(true));
             config.AddItem(new MenuItem("comboE", "Use E").SetValue(true));
             config.AddItem(new MenuItem("comboR", "Use R").SetValue(true));
         }
@@ -334,6 +323,7 @@ namespace Stack_Overflow.Champions
         {
             config.AddItem(new MenuItem("harassQ", "Use Q").SetValue(true));
             config.AddItem(new MenuItem("harassW", "Use W").SetValue(false));
+            config.AddItem(new MenuItem("harassWy", "Use W Yourself").SetValue(true));
             config.AddItem(new MenuItem("harassE", "Use E").SetValue(false));
         }
 
