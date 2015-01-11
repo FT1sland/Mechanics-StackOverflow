@@ -29,14 +29,14 @@ namespace Stack_Overflow.Champions
             E = new Spell(SpellSlot.E, 700);
             R = new Spell(SpellSlot.R, 650);
 
-            Q.SetSkillshot(0.25f, 60, 1450, false, SkillshotType.SkillshotLine);
+            W.SetSkillshot(0.25f, 60, 1450, false, SkillshotType.SkillshotCone);
 
             Game.OnGameUpdate += GameOnOnGameUpdate;
             Drawing.OnDraw += DrawingOnOnDraw;
+            Orbwalking.AfterAttack += AfterAttack;
 
             PrintChat("Talon Carregado.");
 
-            Orbwalking.AfterAttack += AfterAttack;
         }
 
         private void DrawingOnOnDraw(EventArgs args)

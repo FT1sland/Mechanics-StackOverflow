@@ -1,5 +1,5 @@
-C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack Overflow.csprojResolveAssemblyReference.cache
 C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.exe.config
+C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack Overflow.csprojResolveAssemblyReference.cache
 C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.exe
 C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.pdb
 C:\Users\GabrielMiranda\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\LeagueSharp.Common.dll

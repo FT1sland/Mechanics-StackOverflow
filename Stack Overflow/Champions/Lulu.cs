@@ -67,7 +67,7 @@ namespace Stack_Overflow.Champions
 
             W.Cast(unit, Packets);
 
-            if (!GetBool("interromperR") || spell.DangerLevel != InterruptableDangerLevel.High || unit.Distance(ObjectManager.Player.Position) > R.Range )
+            if (!GetBool("interromperR") || spell.DangerLevel != InterruptableDangerLevel.High || unit.Distance(ObjectManager.Player.Position) < R.Range )
                 return;
 
             R.Cast(ObjectManager.Player, Packets);

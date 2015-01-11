@@ -11,43 +11,48 @@ using Stack_Overflow.Utilitarios;
 
 namespace Stack_Overflow.Champions
 {
-    internal class Mordekaiser : Plugin
+    internal class Galio : Plugin
     {
 
         public Items.Item Dfg;
-        public Spell E;
         public Spell Q;
         public Spell W;
+        public Spell E;
         public Spell R;
 
         private bool ultado = false;
 
-        public Mordekaiser()
+        public Galio()
         {
-            Q = new Spell(SpellSlot.Q);
-            W = new Spell(SpellSlot.W, 750);
-            E = new Spell(SpellSlot.E, 700);
-            R = new Spell(SpellSlot.R, 850);
+            Q = new Spell(SpellSlot.Q, 940);
+            W = new Spell(SpellSlot.W, 800);
+            E = new Spell(SpellSlot.E, 1180);
+            R = new Spell(SpellSlot.R, 570); //Decreased range on purpose
 
-            E.SetSkillshot(0.25f, 90, 2000, false, SkillshotType.SkillshotCone);
+            Q.SetSkillshot(0.25f, 150, 1250, false, SkillshotType.SkillshotCircle);
+            E.SetSkillshot(0.25f, 90, 1250, false, SkillshotType.SkillshotLine);
 
             Dfg = new Items.Item(3128, 750);
 
             Game.OnGameUpdate += GameOnOnGameUpdate;
             Drawing.OnDraw += DrawingOnOnDraw;
-            Orbwalking.AfterAttack += AfterAttack;
+            Interrupter.OnPossibleToInterrupt += InterrupterOnOnPossibleToInterrupt;
+            AntiGapcloser.OnEnemyGapcloser += AntiGapcloserOnOnEnemyGapcloser;
 
-            PrintChat("Mordekaiser Carregado.");
+            PrintChat("Galio Carregado.");
 
         }
 
         private void DrawingOnOnDraw(EventArgs args)
         {
+            var drawQ = GetBool("drawQ");
             var drawW = GetBool("drawW");
             var drawE = GetBool("drawE");
             var drawR = GetBool("drawR");
             var p = Player.Position;
 
+            if (drawQ)
+                Utility.DrawCircle(p, Q.Range, Q.IsReady() ? Color.Aqua : Color.Red);
             if (drawW)
                 Utility.DrawCircle(p, W.Range, W.IsReady() ? Color.Aqua : Color.Red);
 
@@ -60,7 +65,6 @@ namespace Stack_Overflow.Champions
 
         private void GameOnOnGameUpdate(EventArgs args)
         {
-            autoUt();
             switch (OrbwalkerMode)
             {
                 case Orbwalking.OrbwalkingMode.Mixed:
@@ -79,26 +83,27 @@ namespace Stack_Overflow.Champions
 
             var useDfg = GetBool("useDFG");
 
+            if (GetBool("comboE") && E.IsReady())
+            {
+                E.CastIfHitchanceEquals(target, HitChance.High, Packets);
+            }
+
             if (useDfg && Dfg.IsReady())
                 Dfg.Cast(target);
 
-            if (GetBool("comboW") && W.IsReady())
+            if (GetBool("comboQ") && Q.IsReady() && ObjectManager.Player.Distance(target.Position) < Q.Range)
             {
-                if (target.Distance(ObjectManager.Player.Position) <= 250)
-                {
-                    W.Cast(ObjectManager.Player);
-                }
-                else
-                {
-                    var nearTarget = inimigoProximo(target);
-
-                    W.Cast(nearTarget);
-                }
+                Q.CastIfHitchanceEquals(target, HitChance.High, Packets);
             }
 
-            if (GetBool("comboE") && E.IsReady() && E.InRange(target))
+            if (GetBool("comboW") && W.IsReady())
             {
-                E.CastIfHitchanceEquals(target, HitChance.High, Packets);
+                W.Cast(ObjectManager.Player);
+            }
+
+            if (GetBool("comboR") && R.IsReady())
+            {
+                R.CastIfWillHit(target, GetValue<Slider>("minR").Value, Packets);
             }
 
         }
@@ -109,37 +114,21 @@ namespace Stack_Overflow.Champions
             if (target == null)
                 return;
 
-            if (GetBool("harassW") && W.IsReady())
-            {
-                if (target.Distance(ObjectManager.Player.Position) <= 250)
-                {
-                    W.Cast(ObjectManager.Player);
-                }
-                else
-                {
-                    var nearTarget = inimigoProximo(target);
-
-                    W.Cast(nearTarget);
-                }
-            }
-
             if (GetBool("harassE") && E.IsReady())
             {
                 E.CastIfHitchanceEquals(target, HitChance.High, Packets);
             }
 
-        }
+            if (GetBool("harassQ") && Q.IsReady() && ObjectManager.Player.Distance(target.Position) < Q.Range)
+            {
+                Q.CastIfHitchanceEquals(target, HitChance.High, Packets);
+            }
 
-        private Obj_AI_Base inimigoProximo(Obj_AI_Hero target)
-        {
-            var nearEnemy =
-                    ObjectManager.Get<Obj_AI_Base>()
-                        .Where(x => !x.IsEnemy)
-                        .Where(x => !x.IsDead)
-                        .Where(x => x.Distance(ObjectManager.Player.Position) <= W.Range)
-                        .FirstOrDefault(
-                            x => x.Distance(target.Position) <= 250);
-            return nearEnemy;
+            if (GetBool("harassW") && W.IsReady())
+            {
+                W.Cast(ObjectManager.Player);
+            }
+
         }
 
         public override float GetComboDamage(Obj_AI_Hero target)
@@ -171,57 +160,36 @@ namespace Stack_Overflow.Champions
             return (float)dmg;
         }
 
-        private void autoUt()
+        private void InterrupterOnOnPossibleToInterrupt(Obj_AI_Base unit, InterruptableSpell spell)
         {
-            if (!R.IsReady() || GetBool("autoR") || ultado)
+            if (!GetBool("interromperR") || spell.DangerLevel != InterruptableDangerLevel.High || unit.Distance(ObjectManager.Player.Position) < R.Range)
                 return;
 
-            var target =
-                    ObjectManager.Get<Obj_AI_Hero>()
-                        .Where(x => x.IsEnemy)
-                        .Where(x => !x.IsMinion)
-                        .Where(x => !x.IsDead)
-                        .Where(x => x.Distance(ObjectManager.Player.Position) <= R.Range)
-                        .FirstOrDefault(
-                            x => x.Health + 30 < (Player.GetSpellDamage(x, SpellSlot.R) * 0.2));
-
-            if (target != null)
-            {
-                if (target.Health + 30 < (Player.GetSpellDamage(target, SpellSlot.R) * 0.2))
-                {
-                    R.Cast(target);
-                    ultado = true;
-
-                    Utility.DelayAction.Add(40000, () => ultado = false);
-                }
-            }
+            R.Cast(Packets);
         }
 
-        public void AfterAttack(AttackableUnit unit, AttackableUnit mytarget)
+        private void AntiGapcloserOnOnEnemyGapcloser(ActiveGapcloser gapcloser)
         {
-            var target = TargetSelector.GetTarget(1000, TargetSelector.DamageType.Magical);
+            if (!GetBool("gapcloser"))
+                return;
 
-            if (OrbwalkerMode == Orbwalking.OrbwalkingMode.Mixed)
-            {
-                if (GetBool("harassQ") && Q.IsReady())
-                {
-                    Q.Cast(Packets);
-                }
-            }
-            if (OrbwalkerMode == Orbwalking.OrbwalkingMode.Combo)
-            {
-                if (GetBool("comboQ") && Q.IsReady())
-                {
-                    Q.Cast(Packets);
-                }
-            }
+            if (W.IsReady() && GetBool("gapcloserW"))
+                W.Cast(ObjectManager.Player, Packets);
+
+            if (Q.IsReady() && GetBool("gapcloserQ"))
+                Q.CastIfHitchanceEquals(gapcloser.Sender, HitChance.Medium, Packets);
+
+            if (E.IsReady() && GetBool("gapcloserE"))
+                E.Cast(Game.CursorPos);
         }
+
 
         public override void Combo(Menu config)
         {
             config.AddItem(new MenuItem("comboQ", "Use Q").SetValue(true));
             config.AddItem(new MenuItem("comboW", "Use W").SetValue(true));
             config.AddItem(new MenuItem("comboE", "Use E").SetValue(true));
+            config.AddItem(new MenuItem("comboR", "Use R").SetValue(true));
         }
 
         public override void Harass(Menu config)
@@ -238,11 +206,17 @@ namespace Stack_Overflow.Champions
 
         public override void Misc(Menu config)
         {
-            config.AddItem(new MenuItem("autoR", "Use R if killable").SetValue(true));
+            config.AddItem(new MenuItem("minR", "Use R if will hit").SetValue(new Slider(1, 1, 5)));
+            config.AddItem(new MenuItem("interruptR", "Use R to interrupt").SetValue(true));
+            config.AddItem(new MenuItem("gapcloser", "Anti Gap Closer").SetValue(true));
+            config.AddItem(new MenuItem("gapcloserQ", "Anti Gap Closer with Q").SetValue(true));
+            config.AddItem(new MenuItem("gapcloserW", "Anti Gap Closer with W").SetValue(true));
+            config.AddItem(new MenuItem("gapcloserE", "Anti Gap Closer with E").SetValue(true));
         }
 
         public override void Drawings(Menu config)
         {
+            config.AddItem(new MenuItem("drawQ", "Draw Q").SetValue(true));
             config.AddItem(new MenuItem("drawW", "Draw W").SetValue(true));
             config.AddItem(new MenuItem("drawE", "Draw E").SetValue(true));
             config.AddItem(new MenuItem("drawR", "Draw R").SetValue(true));

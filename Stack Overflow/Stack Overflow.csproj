@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Champions\Lulu.cs" />
+    <Compile Include="Champions\Galio.cs" />
     <Compile Include="Champions\Mordekaiser.cs" />
     <Compile Include="Champions\Talon.cs" />
     <Compile Include="Utilitario.cs" />
