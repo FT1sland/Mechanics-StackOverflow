@@ -6,7 +6,7 @@ using LeagueSharp.Common;
 
 namespace Stack_Overflow.Utilitarios
 {
-    class ItemManager
+    class ItemManager : Utilitario
     {
 
         private static Menu _myMenu;

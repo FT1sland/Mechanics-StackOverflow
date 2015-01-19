@@ -112,7 +112,7 @@ namespace Stack_Overflow.Champions
 
             if (GetBool("comboE") && E.IsReady())
             {
-                if (E.InRange(target.ServerPosition))
+                if (E.IsInRange(target.ServerPosition))
                 {
                     E.Cast(target);
                 }
@@ -127,7 +127,7 @@ namespace Stack_Overflow.Champions
             {
                 if (GetBool("comboE") && E.IsReady()) 
                 { 
-                    if (E.InRange(target.ServerPosition))
+                    if (E.IsInRange(target.ServerPosition))
                     {
                         E.Cast(target);
                         Q.Cast(target.Position);
@@ -140,19 +140,19 @@ namespace Stack_Overflow.Champions
                 }
                 else
                 {
-                    if (Q.InRange(target))
+                    if (Q.IsInRange(target))
                     {
                         Q.Cast(target.Position);
                     }
                 }
             }
 
-            if (GetBool("comboW") && W.IsReady() && W.InRange(target))
+            if (GetBool("comboW") && W.IsReady() && W.IsInRange(target))
             {
                  W.Cast(target, Packets);
             }
 
-            if (GetBool("comboWy") && W.IsReady() && !W.InRange(target))
+            if (GetBool("comboWy") && W.IsReady() && !W.IsInRange(target))
             {
                 W.Cast(ObjectManager.Player);
             }
@@ -234,7 +234,7 @@ namespace Stack_Overflow.Champions
 
             if (GetBool("harassE") && E.IsReady())
             {
-                if (E.InRange(target.ServerPosition))
+                if (E.IsInRange(target.ServerPosition))
                 {
                     E.Cast(target);
                 }
@@ -249,7 +249,7 @@ namespace Stack_Overflow.Champions
             {
                 if (GetBool("harassE") && E.IsReady())
                 {
-                    if (E.InRange(target.ServerPosition))
+                    if (E.IsInRange(target.ServerPosition))
                     {
                         E.Cast(target);
                         Q.Cast(target.Position);
@@ -262,19 +262,19 @@ namespace Stack_Overflow.Champions
                 }
                 else
                 {
-                    if (Q.InRange(target))
+                    if (Q.IsInRange(target))
                     {
                         Q.Cast(target.Position);
                     }
                 }
             }
 
-            if (GetBool("harassW") && W.IsReady() && W.InRange(target))
+            if (GetBool("harassW") && W.IsReady() && W.IsInRange(target))
             {
                 W.Cast(target, Packets);
             }
 
-            if (GetBool("harassWy") && W.IsReady() && !W.InRange(target))
+            if (GetBool("harassWy") && W.IsReady() && !W.IsInRange(target))
             {
                 W.Cast(ObjectManager.Player);
             }

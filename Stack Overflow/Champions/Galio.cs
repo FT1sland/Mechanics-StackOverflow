@@ -65,6 +65,10 @@ namespace Stack_Overflow.Champions
 
         private void GameOnOnGameUpdate(EventArgs args)
         {
+            if (ultado)
+            {
+                //Orbwalker
+            }
             switch (OrbwalkerMode)
             {
                 case Orbwalking.OrbwalkingMode.Mixed:
@@ -83,20 +87,20 @@ namespace Stack_Overflow.Champions
 
             var useDfg = GetBool("useDFG");
 
-            if (GetBool("comboE") && E.IsReady())
+            if (GetBool("comboE") && E.IsReady() && !ultado)
             {
                 E.CastIfHitchanceEquals(target, HitChance.High, Packets);
             }
 
-            if (useDfg && Dfg.IsReady())
+            if (useDfg && Dfg.IsReady() && !ultado)
                 Dfg.Cast(target);
 
-            if (GetBool("comboQ") && Q.IsReady() && ObjectManager.Player.Distance(target.Position) < Q.Range)
+            if (GetBool("comboQ") && Q.IsReady() && ObjectManager.Player.Distance(target.Position) < Q.Range && !ultado)
             {
                 Q.CastIfHitchanceEquals(target, HitChance.High, Packets);
             }
 
-            if (GetBool("comboW") && W.IsReady())
+            if (GetBool("comboW") && W.IsReady() && !ultado)
             {
                 W.Cast(ObjectManager.Player);
             }
@@ -104,6 +108,8 @@ namespace Stack_Overflow.Champions
             if (GetBool("comboR") && R.IsReady())
             {
                 R.CastIfWillHit(target, GetValue<Slider>("minR").Value, Packets);
+                ultado = true;
+                Utility.DelayAction.Add(2000, () => ultado = false);
             }
 
         }

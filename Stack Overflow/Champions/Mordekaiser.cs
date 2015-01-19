@@ -96,7 +96,7 @@ namespace Stack_Overflow.Champions
                 }
             }
 
-            if (GetBool("comboE") && E.IsReady() && E.InRange(target))
+            if (GetBool("comboE") && E.IsReady() && E.IsInRange(target))
             {
                 E.CastIfHitchanceEquals(target, HitChance.High, Packets);
             }

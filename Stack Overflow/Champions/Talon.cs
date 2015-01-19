@@ -90,7 +90,7 @@ namespace Stack_Overflow.Champions
             if (target == null)
                 return;
 
-            if (GetBool("comboR") && R.IsReady() && (GetBool("comboE") && E.IsReady()) && !rCasted && E.InRange(target))
+            if (GetBool("comboR") && R.IsReady() && (GetBool("comboE") && E.IsReady()) && !rCasted && E.IsInRange(target))
             {
                 R.Cast(Packets);
                 rCasted = true;
@@ -101,7 +101,7 @@ namespace Stack_Overflow.Champions
                 W.CastIfHitchanceEquals(target, HitChance.Medium, Packets);
             }
 
-            if (GetBool("comboE") && E.InRange(target))
+            if (GetBool("comboE") && E.IsInRange(target))
             {
                 if (rCasted && E.IsReady())
                 {
@@ -113,6 +113,11 @@ namespace Stack_Overflow.Champions
                     R.Cast(Packets);
                     rCasted = true;
                     E.Cast(target, Packets);
+                    if(rCasted && !E.IsReady() && eCasted)
+                    {
+                        Utility.DelayAction.Add(700, () => R.Cast(Packets));
+                        rCasted = false;
+                    }
                 }else if(rCasted && !E.IsReady() && eCasted)
                 {
                     R.Cast(Packets);
