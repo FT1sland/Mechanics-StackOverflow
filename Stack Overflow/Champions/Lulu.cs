@@ -31,7 +31,7 @@ namespace Stack_Overflow.Champions
 
             Dfg = new Items.Item(3128, 750);
 
-            Game.OnGameUpdate += GameOnOnGameUpdate;
+            Game.OnUpdate += GameOnOnGameUpdate;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloserOnOnEnemyGapcloser;
             Interrupter.OnPossibleToInterrupt += InterrupterOnOnPossibleToInterrupt;
             Drawing.OnDraw += DrawingOnOnDraw;

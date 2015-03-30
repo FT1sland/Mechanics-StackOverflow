@@ -26,7 +26,7 @@ namespace Stack_Overflow.Utilitarios
 
             _menu = config;
 
-            Game.OnGameUpdate += GameOnOnGameUpdate;
+            Game.OnUpdate += GameOnOnGameUpdate;
         }
 
         private static void GameOnOnGameUpdate(EventArgs args)
@@ -34,7 +34,7 @@ namespace Stack_Overflow.Utilitarios
             var useHp = _menu.Item("useHP").GetValue<bool>();
             var useMp = _menu.Item("useMP").GetValue<bool>();
 
-            if (useHp && ObjectManager.Player.HealthPercentage() <= _menu.Item("useHPPercent").GetValue<Slider>().Value &&
+            if (useHp && ObjectManager.Player.HealthPercent <= _menu.Item("useHPPercent").GetValue<Slider>().Value &&
                 !HasHealthPotBuff())
             {
                 if (Items.CanUseItem(Hpid) && Items.HasItem(Hpid))
@@ -44,7 +44,7 @@ namespace Stack_Overflow.Utilitarios
             }
 
             if (!useMp ||
-                !(ObjectManager.Player.ManaPercentage() <= _menu.Item("useMPPercent").GetValue<Slider>().Value) ||
+                !(ObjectManager.Player.ManaPercent <= _menu.Item("useMPPercent").GetValue<Slider>().Value) ||
                 HasMannaPutBuff()) return;
 
             if (Items.CanUseItem(Mpid) && Items.HasItem(Mpid))

@@ -31,7 +31,7 @@ namespace Stack_Overflow.Champions
 
             W.SetSkillshot(0.25f, 60, 1450, false, SkillshotType.SkillshotCone);
 
-            Game.OnGameUpdate += GameOnOnGameUpdate;
+            Game.OnUpdate += GameOnOnGameUpdate;
             Drawing.OnDraw += DrawingOnOnDraw;
             Orbwalking.AfterAttack += AfterAttack;
 
