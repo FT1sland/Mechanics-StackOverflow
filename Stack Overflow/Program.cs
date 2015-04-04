@@ -18,22 +18,28 @@ namespace Stack_Overflow
         private static void Game_OnGameLoad(EventArgs args)
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
-            var plugin = Type.GetType("Stack_Overflow.Champions." + ObjectManager.Player.ChampionName);
-
-            if (plugin == null)
+            var champname = ObjectManager.Player.BaseSkinName;
+            if (champname == "Galio")
+                new Stack_Overflow.Champions.Galio();
+            else if (champname == "Lulu")
+                new Stack_Overflow.Champions.Lulu();
+            else if (champname == "Mordekaiser")
+                new Stack_Overflow.Champions.Mordekaiser();
+            else if (champname == "Talon")
+                new Stack_Overflow.Champions.Mordekaiser();
+            else
             {
-                Plugin.PrintChat(ObjectManager.Player.ChampionName + " not supported / não suportado");
-                return;
+                Game.PrintChat("Champion not found. Loading OrbWalker...");
             }
-
-            Activator.CreateInstance(plugin);
         }
 
         private static void CurrentDomainOnUnhandledException(object sender,
             UnhandledExceptionEventArgs unhandledExceptionEventArgs)
         {
-            Console.WriteLine(((Exception) unhandledExceptionEventArgs.ExceptionObject).Message);
-            Plugin.PrintChat("Fatal Error please report on forum / Erro critico por favor avise no fórum");
+            Console.WriteLine(((Exception)unhandledExceptionEventArgs.ExceptionObject).Message);
+            Console.WriteLine(((Exception)unhandledExceptionEventArgs.ExceptionObject).Source);
+            Console.WriteLine((string)unhandledExceptionEventArgs.ExceptionObject);
+            Game.PrintChat("Fatal error occured! Report on forum!");
         }
     }
 }

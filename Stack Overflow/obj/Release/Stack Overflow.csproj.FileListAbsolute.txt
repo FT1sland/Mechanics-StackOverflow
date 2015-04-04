@@ -1,13 +1,12 @@
-C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.exe.config
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack Overflow.csprojResolveAssemblyReference.cache
-C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.exe
-C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlw.pdb
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\LeagueSharp.Common.dll
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\LeagueSharp.dll
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.dll
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\SharpDX.Direct3D9.dll
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\clipper_library.dll
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\LeagueSharp.xml
-C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack OverFlw.exe
-C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack OverFlw.pdb
 C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlow.exe.config
+C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlow.exe
+C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\bin\Release\Stack OverFlow.pdb
+C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack OverFlow.exe
+C:\Users\Intecma\Documents\GitHub\Mechanics-StackOverflow\Stack Overflow\obj\Release\Stack OverFlow.pdb

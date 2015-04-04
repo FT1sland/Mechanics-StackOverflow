@@ -193,12 +193,12 @@ namespace Stack_Overflow.Utilitarios
                     if (KillableTarget)
                         Items.UseItem(item.ActiveId, Target);
 
-                    if (ObjectManager.Player.HealthPercentage() <= UseAtMyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
+                    if (ObjectManager.Player.HealthPercent <= UseAtMyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
                     {
                         Items.UseItem(item.ActiveId, Target);
                     }
 
-                    if (Target.HealthPercentage() <= UseAtEnemyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
+                    if (Target.HealthPercent <= UseAtEnemyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
                     {
                         Items.UseItem(item.ActiveId, Target);
                     }
@@ -229,12 +229,12 @@ namespace Stack_Overflow.Utilitarios
                 if (KillableTarget)
                     Items.UseItem(item.ActiveId);
 
-                if (ObjectManager.Player.HealthPercentage() <= UseAtMyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
+                if (ObjectManager.Player.HealthPercent <= UseAtMyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
                 {
                     Items.UseItem(item.ActiveId);
                 }
 
-                if (Target.HealthPercentage() <= UseAtEnemyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
+                if (Target.HealthPercent <= UseAtEnemyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
                 {
                     Items.UseItem(item.ActiveId);
                 }
@@ -262,13 +262,13 @@ namespace Stack_Overflow.Utilitarios
                         lastMura = Environment.TickCount;
                     }
 
-                    if (ObjectManager.Player.HealthPercentage() <= UseAtMyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
+                    if (ObjectManager.Player.HealthPercent <= UseAtMyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
                     {
                         Items.UseItem(item.ActiveId, Target);
                         lastMura = Environment.TickCount;
                     }
 
-                    if (Target.HealthPercentage() <= UseAtEnemyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
+                    if (Target.HealthPercent <= UseAtEnemyHp(item.ActiveName) && !OnlyIfKillable(item.ActiveName))
                     {
                         Items.UseItem(item.ActiveId, Target);
                         lastMura = Environment.TickCount;
